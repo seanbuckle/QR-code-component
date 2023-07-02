@@ -24,7 +24,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font: var(--font-weight-400) var(--body-font-size) / normal var(--font-family);
+  font: var(--font-weight-400) var(--body-font-size)/normal var(--font-family);
   background-color: var(--light-grey-color);
 }
 
@@ -55,10 +55,17 @@ body {
 }
 .card__heading {
   margin-block-start: 24px;
-  font: var(--font-weight-700) var(--heading-font-size) / normal
-    var(--font-family);
+  font: var(--font-weight-700) var(--heading-font-size)/normal var(--font-family);
   color: var(--dark-blue);
 }
 .card__body {
   margin-block-start: 16px;
 }
+
+.attribution {
+  font-size: 11px;
+  position: fixed;
+  bottom: 16px;
+}
+
+/*# sourceMappingURL=style.css.map */

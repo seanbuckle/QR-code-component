@@ -13,13 +13,17 @@
   /* colors */
   color-scheme: light dark;
   --clr-primary: light-dark(oklch(40% 0.3021 260.77), oklch(80% 0.1113 260.77));
-  --clr-surface-container: light-dark(
-    oklch(100% 0.0224 251.64),
-    oklch(20% 0.0224 251.64)
+  --clr-primary-hover: light-dark(
+    oklch(20% 0.3021 260.77 / 0.8),
+    oklch(80% 0.1113 260.77 / 0.8)
   );
   --clr-surface: light-dark(
     oklch(95.47% 0.024000000000000004 260.77),
     oklch(10% 0.024000000000000004 260.77)
+  );
+  --clr-surface-container: light-dark(
+    oklch(100% 0.0224 251.64),
+    oklch(20% 0.0224 251.64)
   );
   --clr-on-surface-container: light-dark(
     oklch(46.18% 0.0396 275.56),
@@ -29,7 +33,14 @@
     oklch(31.61% 0.0612 260.77),
     oklch(71.61% 0.0612 260.77)
   );
-  --clr-: ;
+  --clr-inverse-surface: light-dark(
+    oklch(10% 0.024000000000000004 260.77),
+    oklch(95.47% 0.024000000000000004 260.77)
+  );
+  --clr-inverse-on-surface: light-dark(
+    oklch(95.47% 0.024000000000000004 260.77),
+    oklch(10% 0.024000000000000004 260.77)
+  );
   /* font */
   --heading-font-size: 22px;
   --body-font-size: 15px;
@@ -83,8 +94,8 @@ body {
       display: none;
       align-items: center;
       content: attr(tooltip);
-      background-color: var(--clr-tooltip);
-      color: var(--clr-surface-2);
+      background-color: var(--clr-inverse-surface);
+      color: var(--clr-inverse-on-surface);
     }
     &:hover {
       background-color: var(--clr-primary-hover);
@@ -164,5 +175,3 @@ body {
     color: var(--clr-primary);
   }
 }
-
-/*# sourceMappingURL=style.css.map */

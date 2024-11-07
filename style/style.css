@@ -1,16 +1,46 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap");
 * {
-  margin: 0;
-  padding: 0;
+  padding-block: 0;
+  padding-inline: 0;
+  border-block: 0;
+  border-inline: 0;
+  margin-block: 0;
+  margin-inline: 0;
   box-sizing: border-box;
 }
 
 :root {
   /* colors */
-  --white-color: hsl(0, 0%, 100%);
-  --light-grey-color: hsl(212, 45%, 89%);
-  --greyish-blue-color: hsl(220, 15%, 55%);
-  --dark-blue: hsl(218, 44%, 22%);
+  color-scheme: light dark;
+  --clr-primary: light-dark(oklch(40% 0.3021 260.77), oklch(80% 0.1113 260.77));
+  --clr-primary-hover: light-dark(
+    oklch(20% 0.3021 260.77 / 0.8),
+    oklch(80% 0.1113 260.77 / 0.8)
+  );
+  --clr-surface: light-dark(
+    oklch(95.47% 0.024000000000000004 260.77),
+    oklch(10% 0.024000000000000004 260.77)
+  );
+  --clr-surface-container: light-dark(
+    oklch(100% 0.0224 251.64),
+    oklch(20% 0.0224 251.64)
+  );
+  --clr-on-surface-container: light-dark(
+    oklch(46.18% 0.0396 275.56),
+    oklch(62.05% 0.0373 264.25)
+  );
+  --clr-on-surface-container-heading: light-dark(
+    oklch(31.61% 0.0612 260.77),
+    oklch(71.61% 0.0612 260.77)
+  );
+  --clr-inverse-surface: light-dark(
+    oklch(10% 0.024000000000000004 260.77),
+    oklch(95.47% 0.024000000000000004 260.77)
+  );
+  --clr-inverse-on-surface: light-dark(
+    oklch(95.47% 0.024000000000000004 260.77),
+    oklch(10% 0.024000000000000004 260.77)
+  );
   /* font */
   --heading-font-size: 22px;
   --body-font-size: 15px;
@@ -19,12 +49,80 @@
   --font-family: "Outfit", sans-serif;
 }
 
+html[theme="light"] {
+  color-scheme: light;
+}
+html[theme="dark"] {
+  color-scheme: dark;
+}
+
 body {
   block-size: 100dvh;
   display: grid;
-  grid-template-rows: 1fr auto;
-  font: var(--font-weight-400) var(--body-font-size)/normal var(--font-family);
-  background-color: var(--light-grey-color);
+  grid-template-rows: auto 1fr auto;
+  font: var(--font-weight-400) var(--body-font-size) / normal var(--font-family);
+  background-color: var(--clr-surface);
+}
+
+.site-header {
+  block-size: 4rem;
+  padding-inline-end: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  .site-header__theme-toggle {
+    inline-size: 3rem;
+    block-size: 3rem;
+    border-radius: 50%;
+    position: relative;
+    display: grid;
+    place-items: center;
+    background-color: transparent;
+    cursor: pointer;
+    transition: color 500ms ease-in-out, background-color 500ms ease-in-out;
+    & > svg {
+      fill: currentColor;
+    }
+    &::after {
+      min-inline-size: max-content;
+      block-size: 1.5rem;
+      padding-inline: 0.5rem;
+      border-radius: 0.25rem;
+      position: absolute;
+      inset-block-end: calc(-4px - 1.5rem);
+      inset-inline-end: 0;
+      display: none;
+      align-items: center;
+      content: attr(tooltip);
+      background-color: var(--clr-inverse-surface);
+      color: var(--clr-inverse-on-surface);
+    }
+    &:hover {
+      background-color: var(--clr-primary-hover);
+      & > svg {
+        fill: var(--clr-primary);
+      }
+      &::after {
+        display: flex;
+        animation: tooltip 200ms ease,
+          tooltip 200ms ease 1700ms reverse forwards;
+      }
+    }
+  }
+}
+
+@keyframes tooltip {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@media (hover: none) {
+  .site-header__theme-toggle:hover::after {
+    display: none;
+  }
 }
 
 .site-main {
@@ -46,9 +144,9 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-content: center;
-  background-color: var(--white-color);
+  background-color: var(--clr-surface-container);
   text-align: center;
-  color: var(--greyish-blue-color);
+  color: var(--clr-on-surface-container);
 }
 .card__qr-code-img {
   inline-size: 100%;
@@ -60,8 +158,9 @@ body {
 }
 .card__heading {
   margin-block-start: 24px;
-  font: var(--font-weight-700) var(--heading-font-size)/normal var(--font-family);
-  color: var(--dark-blue);
+  font: var(--font-weight-700) var(--heading-font-size) / normal
+    var(--font-family);
+  color: var(--clr-on-surface-container-heading);
 }
 .card__body {
   margin-block-start: 16px;
@@ -72,6 +171,7 @@ body {
   display: flex;
   justify-content: center;
   font-size: 11px;
+  a {
+    color: var(--clr-primary);
+  }
 }
-
-/*# sourceMappingURL=style.css.map */
